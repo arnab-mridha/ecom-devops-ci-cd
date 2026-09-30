@@ -1,0 +1,17 @@
+# Goal : To say Hello and tell the title / name of repo
+
+# Start with naming the workflow 
+name: "Hello workflow"
+
+# when the wf runs or triggers
+on:
+  push:
+    branches: [main]
+
+# what the WF does
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello"
