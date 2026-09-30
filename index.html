@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShopEase - Online Shopping</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #222;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            background: #ffffff;
+            padding: 18px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 7%;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        }
+
+        .hero-content {
+            max-width: 550px;
+        }
+
+        .hero-content p:first-child {
+            color: #2563eb;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            width: 420px;
+            height: 350px;
+            background: #ffffff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            padding: 70px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* ================= CATEGORIES ================= */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .category {
+            background: white;
+            padding: 35px 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            transform: translateY(-7px);
+        }
+
+        .category-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .category h3 {
+            margin-bottom: 8px;
+        }
+
+        .category p {
+            color: #777;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 230px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .rating {
+            color: #f59e0b;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .add-cart {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add-cart:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= SALE ================= */
+
+        .sale {
+            margin: 20px 7% 70px;
+            padding: 50px;
+            border-radius: 15px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sale h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .sale p {
+            color: #d1d5db;
+        }
+
+        .sale .btn {
+            background: white;
+            color: #111827;
+        }
+
+        /* ================= NEWSLETTER ================= */
+
+        .newsletter {
+            background: #eff6ff;
+            padding: 60px 7%;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 550px;
+            margin: auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 14px 25px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111827;
+            color: white;
+            padding: 50px 7% 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: #9ca3af;
+            line-height: 1.7;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #374151;
+            padding-top: 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .categories,
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .hero-image {
+                width: 100%;
+            }
+
+            .categories,
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .sale {
+                flex-direction: column;
+                gap: 25px;
+                text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                border-radius: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        ShopEase
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#sale">Offers</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-icons">
+        <span>🔍</span>
+        <span>🛒</span>
+        <span>👤</span>
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p>🔥 BIG SUMMER SALE</p>
+
+        <h1>
+            Discover Products You'll Love
+        </h1>
+
+        <p>
+            Shop the latest fashion, electronics and lifestyle
+            products at amazing prices.
+        </p>
+
+        <a href="#products" class="btn">
+            Shop Now →
+        </a>
+
+    </div>
+
+    <div class="hero-image">
+        🛍️
+    </div>
+
+</section>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="section" id="categories">
+
+    <div class="section-title">
+
+        <h2>Shop By Category</h2>
+
+        <p>
+            Find everything you need in one place
+        </p>
+
+    </div>
+
+    <div class="categories">
+
+        <div class="category">
+            <div class="category-icon">👕</div>
+            <h3>Fashion</h3>
+            <p>Latest fashion trends</p>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">📱</div>
+            <h3>Electronics</h3>
+            <p>Smart gadgets & devices</p>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🏠</div>
+            <h3>Home</h3>
+            <p>Make your home beautiful</p>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🎧</div>
+            <h3>Accessories</h3>
+            <p>Complete your lifestyle</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="section" id="products">
+
+    <div class="section-title">
+
+        <h2>Featured Products</h2>
+
+        <p>
+            Our most popular products
+        </p>
+
+    </div>
+
+    <div class="products">
+
+        <!-- Product 1 -->
+
+        <div class="product">
+
+            <div class="product-image">
+                👟
+            </div>
+
+            <div class="product-info">
+
+                <h3>Premium Sneakers</h3>
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+                <div class="price">
+                    ₹2,499
+                    <span class="old-price">₹3,499</span>
+                </div>
+
+                <button class="add-cart">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 2 -->
+
+        <div class="product">
+
+            <div class="product-image">
+                🎧
+            </div>
+
+            <div class="product-info">
+
+                <h3>Wireless Headphones</h3>
+
+                <div class="rating">
+                    ★★★★☆
+                </div>
+
+                <div class="price">
+                    ₹1,999
+                    <span class="old-price">₹2,999</span>
+                </div>
+
+                <button class="add-cart">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 3 -->
+
+        <div class="product">
+
+            <div class="product-image">
+                ⌚
+            </div>
+
+            <div class="product-info">
+
+                <h3>Smart Watch</h3>
+
+                <div class="rating">
+                    ★★★★★
+                </div>
+
+                <div class="price">
+                    ₹3,299
+                    <span class="old-price">₹4,999</span>
+                </div>
+
+                <button class="add-cart">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 4 -->
+
+        <div class="product">
+
+            <div class="product-image">
+                🎒
+            </div>
+
+            <div class="product-info">
+
+                <h3>Travel Backpack</h3>
+
+                <div class="rating">
+                    ★★★★☆
+                </div>
+
+                <div class="price">
+                    ₹1,299
+                    <span class="old-price">₹1,999</span>
+                </div>
+
+                <button class="add-cart">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SALE ================= -->
+
+<section class="sale" id="sale">
+
+    <div>
+
+        <h2>50% OFF</h2>
+
+        <p>
+            Limited-time offer on selected products.
+        </p>
+
+    </div>
+
+    <a href="#products" class="btn">
+        Shop Sale
+    </a>
+
+</section>
+
+
+<!-- ================= NEWSLETTER ================= -->
+
+<section class="newsletter">
+
+    <h2>Get 10% Off Your First Order</h2>
+
+    <p>
+        Subscribe to our newsletter and receive exclusive offers.
+    </p>
+
+    <form class="newsletter-form">
+
+        <input
+            type="email"
+            placeholder="Enter your email"
+            required
+        >
+
+        <button type="submit">
+            Subscribe
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer id="contact">
+
+    <div class="footer-content">
+
+        <div>
+
+            <h3>ShopEase</h3>
+
+            <p>
+                Your one-stop online shopping destination.
+                Quality products at affordable prices.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Shop</h3>
+
+            <ul>
+
+                <li>
+                    <a href="#">Fashion</a>
+                </li>
+
+                <li>
+                    <a href="#">Electronics</a>
+                </li>
+
+                <li>
+                    <a href="#">Home</a>
+                </li>
+
+                <li>
+                    <a href="#">Accessories</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>Help</h3>
+
+            <ul>
+
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+
+                <li>
+                    <a href="#">Shipping</a>
+                </li>
+
+                <li>
+                    <a href="#">Returns</a>
+                </li>
+
+                <li>
+                    <a href="#">FAQ</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>Follow Us</h3>
+
+            <ul>
+
+                <li>
+                    <a href="#">Facebook</a>
+                </li>
+
+                <li>
+                    <a href="#">Instagram</a>
+                </li>
+
+                <li>
+                    <a href="#">Twitter</a>
+                </li>
+
+                <li>
+                    <a href="#">YouTube</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 ShopEase. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    // Add to cart buttons
+
+    const cartButtons =
+        document.querySelectorAll(".add-cart");
+
+    cartButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            button.innerText = "✓ Added to Cart";
+
+            setTimeout(() => {
+
+                button.innerText = "Add to Cart";
+
+            }, 1500);
+
+        });
+
+    });
+
+
+    // Newsletter
+
+    const newsletter =
+        document.querySelector(".newsletter-form");
+
+    newsletter.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        alert("Thank you for subscribing!");
+
+        newsletter.reset();
+
+    });
+
+</script>
+
+</body>
+</html>
