@@ -13,7 +13,7 @@ jobs:
 
   # Job 1
   greet:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Say Hello
@@ -22,7 +22,7 @@ jobs:
 
   # Job 2
   repo-info:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Show Repository Name
