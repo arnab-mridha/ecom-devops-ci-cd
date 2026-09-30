@@ -1,0 +1,60 @@
+# Goal: Simple sequential CI/CD pipeline
+
+name: "Simple CI/CD Pipeline"
+
+# Trigger workflow whenever code is pushed to main
+on:
+  push:
+    branches: [main]
+
+jobs:
+
+  # =========================
+  # JOB 1: BUILD
+  # =========================
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Application
+        run: echo "Building application..."
+
+      - name: Build Completed
+        run: echo "Build completed successfully!"
+
+
+  # =========================
+  # JOB 2: TEST
+  # =========================
+  test:
+    runs-on: ubuntu-latest
+
+    # Test will start only after build succeeds
+    needs: build
+
+    steps:
+      - name: Run Tests
+        run: echo "Running tests..."
+
+      - name: Tests Completed
+        run: echo "All tests passed!"
+
+
+  # =========================
+  # JOB 3: DEPLOY
+  # =========================
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Deploy will start only after test succeeds
+    needs: test
+
+    steps:
+      - name: Deploy Application
+        run: echo "Deploying application..."
+
+      - name: Deployment Completed
+        run: echo "Application deployed successfully!"
